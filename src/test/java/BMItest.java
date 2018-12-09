@@ -36,7 +36,7 @@ public class BMItest {
     private Object[] throwTestMethod() {
         return new Object[]{
                 new Object[]{0,100,"Wrong growth value"},
-                new Object[]{168,0, "Wrong wieght value"}
+                new Object[]{30,0, "Wrong weight value"}
         };
     }
 

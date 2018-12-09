@@ -7,22 +7,12 @@ public class BodyMassIndex implements Calculator<Double> {
     private double growth;
     private double weight;
     private double bodyMassIndex;
-    private String bmiAnalyzeResult = "";
 
     public BodyMassIndex(double growth, double weight) {
 //        Logger logger = .getLogger(BodyMassIndex.class);
-        try {
+
             this.growth = checkGrowth(growth);
-        } catch (IllegalArgumentException e) {
-//            logger.info("[ERROR] Bad argument");
-            e.getMessage();
-        }
-        try {
             this.weight = checkWeight(weight);
-        } catch (IllegalArgumentException e) {
-//            logger.info("[ERROR] Bad argument");
-            e.getMessage();
-        }
     }
 
     public double checkGrowth(double growth) {
@@ -36,10 +26,10 @@ public class BodyMassIndex implements Calculator<Double> {
     }
 
     public double checkWeight(double weight) {
-        if (weight >= 0 && weight <= 300)
+        if (weight > 0 && weight <= 300)
             return weight;
         else
-            throw new IllegalArgumentException("Wrong wieght value");
+            throw new IllegalArgumentException("Wrong weight value");
     }
 
     @Override
