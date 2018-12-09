@@ -1,7 +1,11 @@
+package analyzer;
+import bmi.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class BMIanalyzer {
+
+public class BMIanalyzer implements Analyzer <String> {
 
     private String bmiAnalyzeResult = "";
     private double bmiValue;
@@ -26,7 +30,7 @@ public class BMIanalyzer {
 
     private void generateList() {
         List<Object> tmp = new ArrayList<>();
-//        Object (double min, double max, Gender gender, String interprete)
+//        Object (double min, double max, bmi.Gender gender, String interprete)
         tmp.add(new BMIlimit(0, 15, Gender.MALE, "very severely underweight"));
         tmp.add(new BMIlimit(15, 16, Gender.MALE, "severely underweight"));
         tmp.add(new BMIlimit(16, 18.5, Gender.MALE, "underweight"));
@@ -43,6 +47,7 @@ public class BMIanalyzer {
 
     }
 
+    @Override
     public String analyze() {
         BMIlimit bmIlimit;
         int arrLen = bmiAnalyzeOptions.size();

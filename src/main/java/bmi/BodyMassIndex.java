@@ -1,9 +1,8 @@
-import java.util.InputMismatchException;
-import java.util.logging.Logger;
+package bmi;
 
 import static java.lang.Math.pow;
 
-public class BodyMassIndex implements Calculate {
+public class BodyMassIndex implements Calculator<Double> {
     //
     private double growth;
     private double weight;
@@ -11,16 +10,18 @@ public class BodyMassIndex implements Calculate {
     private String bmiAnalyzeResult = "";
 
     public BodyMassIndex(double growth, double weight) {
-        Logger logger = null;
+//        Logger logger = .getLogger(BodyMassIndex.class);
         try {
             this.growth = checkGrowth(growth);
         } catch (IllegalArgumentException e) {
-            logger.info("[ERROR] Bad argument");
+//            logger.info("[ERROR] Bad argument");
+            e.getMessage();
         }
         try {
             this.weight = checkWeight(weight);
         } catch (IllegalArgumentException e) {
-            logger.info("[ERROR] Bad argument");
+//            logger.info("[ERROR] Bad argument");
+            e.getMessage();
         }
     }
 
@@ -31,24 +32,20 @@ public class BodyMassIndex implements Calculate {
         if (growth >= 0.1 && growth <= 2.4)
             return growth;
         else
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Wrong growth value");
     }
 
     public double checkWeight(double weight) {
         if (weight >= 0 && weight <= 300)
             return weight;
         else
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Wrong wieght value");
     }
 
     @Override
-    public double calculate() {
+    public Double calculate() {
         this.bodyMassIndex = weight / pow(growth, 2);
         return bodyMassIndex;
     }
-
-    @Override
-    public String interprer() {
-        return null;
-    }
 }
+

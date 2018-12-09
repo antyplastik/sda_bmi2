@@ -1,6 +1,9 @@
+import bmi.BodyMassIndex;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
 import java.util.InputMismatchException;
@@ -13,22 +16,27 @@ public class BMItest {
 
     BodyMassIndex bmi;
 
+    @Rule
+        public final ExpectedException exception = ExpectedException.none();
     @Test
     @Parameters(method = "throwTestMethod")
-    public void checkThrowIfGrowthOrWeightIsIncorrect(double growth, double weight) {
-        try {
-            bmi = new BodyMassIndex(growth, weight);
-//            male = new Person(Gender.MALE, 29, 1.73, weight);
-            fail();
-        } catch (IllegalArgumentException e) {
-            e.getMessage();
-        }
+    public void checkThrowIfGrowthOrWeightIsIncorrect(double growth, double weight, String expectedMessage) {
+
+        exception.expect(IllegalArgumentException.class);
+        exception.expectMessage(expectedMessage);
+        bmi = new BodyMassIndex(growth, weight);
+//        try {
+//            bmi = new BodyMassIndex(growth, weight);
+//            fail();
+//        } catch (IllegalArgumentException e) {
+//            e.getMessage();
+//        }
     }
 
     private Object[] throwTestMethod() {
         return new Object[]{
-                new Object[]{0,100},
-                new Object[]{168,0}
+                new Object[]{0,100,"Wrong growth value"},
+                new Object[]{168,0, "Wrong wieght value"}
         };
     }
 

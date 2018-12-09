@@ -9,22 +9,24 @@ public class SimpleConsole {
         scanner = new Scanner(System.in);
     }
 
-    public double getDoublePossitiveValue(String message, DigitSign digit) {
-        double value = 0;
-        String tmp = "";
+    public double getDoubleValue(String message) {
+        double value;
+        String tmp;
         System.out.print(message + "\n>> ");
         do {
             tmp = scanner.nextLine();
             if (isDigit(tmp)) {
                 value = Double.parseDouble(tmp);
-                if (digit.equals(DigitSign.POSSITIVE))
-                    value = Math.abs(value);
                 break;
             } else
                 print("Try again");
         } while (true);
 
         return value;
+    }
+
+    public double getAbsolute(double value) {
+        return Math.abs(value);
     }
 
     public void print(String message) {
@@ -35,7 +37,7 @@ public class SimpleConsole {
         System.out.format(message, args);
     }
 
-    public static boolean isDigit(String str) {
+    private static boolean isDigit(String str) {
         try {
             double d = Double.parseDouble(str);
         } catch (NumberFormatException nfe) {
@@ -43,8 +45,4 @@ public class SimpleConsole {
         }
         return true;
     }
-}
-
-enum DigitSign{
-     ALL, POSSITIVE, NEGATIVE
 }

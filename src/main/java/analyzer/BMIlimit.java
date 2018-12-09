@@ -1,3 +1,7 @@
+package analyzer;
+
+import bmi.Gender;
+
 public class BMIlimit {
     private double min;
     private double max;
