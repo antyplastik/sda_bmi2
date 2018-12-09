@@ -3,6 +3,8 @@ import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.InputMismatchException;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -41,6 +43,7 @@ public class BMItest {
         return new Object[]{
                 new Object[]{1.73, 68, 22.72},
                 new Object[]{1.62, 45, 17.147},
+                new Object[]{2, 2, 0.5},
         };
     }
 }
